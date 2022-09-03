@@ -1,12 +1,12 @@
-import userAPI from "../API/user";
+import userAPI from '../API/user';
 
-const ADD_FRIEND = "ADD_FRIED";
-const DELETE_FRIEND = "DELETE_FRIED";
-const GET_USERS = "GET_USERS";
-const CHANGE_CURRENT_PAGE = "CHANGE_CURRENT_PAGE";
-const GET_TOTAL_USERS_COUNT = "GET_TOTAL_USERS_COUNT";
-const TOGGLE_ISFECHING = "TOGGLE_PRELOADER";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const ADD_FRIEND = 'ADD_FRIED';
+const DELETE_FRIEND = 'DELETE_FRIED';
+const GET_USERS = 'GET_USERS';
+const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
+const GET_TOTAL_USERS_COUNT = 'GET_TOTAL_USERS_COUNT';
+const TOGGLE_ISFECHING = 'TOGGLE_PRELOADER';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const intitialState = {
   users: [],
@@ -68,42 +68,43 @@ export const usersReduser = (state = intitialState, action) => {
   }
 };
 
+//HELP FUNCTIONS
+const folowUnfollowFlow = async (settings) => {
+  const { userId, ApiMethod, actionCreator, dispatch } = settings;
+  dispatch(toggleFollowingProgress(true, userId));
+
+  const data = await ApiMethod(userId);
+
+  if (data.data.resultCode === 0) {
+    dispatch(actionCreator(userId));
+  }
+  dispatch(toggleFollowingProgress(false, userId));
+};
+
 // Thunks
 export const getUsersThunkCreator = (selectPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFeching(true));
 
-    userAPI.getUsers(selectPage, pageSize).then((data) => {
-      dispatch(getUsers(data.items));
-      dispatch(toggleIsFeching(false));
+    const data = await userAPI.getUsers(selectPage, pageSize);
+    dispatch(getUsers(data.items));
+    dispatch(toggleIsFeching(false));
 
-      // dispatch(getTotalUserCount(response.data.totalCount)); // слишком много пока
-    });
+    // dispatch(getTotalUserCount(response.data.totalCount)); // слишком много пока
   };
 };
 export const addFriend = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    userAPI.addFriend(userId).then((data) => {
-      debugger;
-      if (data.data.resultCode === 0) {
-        dispatch(addFriedAC(userId));
-      }
-      dispatch(toggleFollowingProgress(false, userId));
-    });
+  return async (dispatch) => {
+    const ApiMethod = userAPI.addFriend.bind(userAPI);
+    const actionCreator = addFriedAC;
+    folowUnfollowFlow({ userId, dispatch, ApiMethod, actionCreator });
   };
 };
 export const deleteFriend = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-
-    userAPI.deleteFriend(userId).then((data) => {
-      if (data.data.resultCode === 0) {
-        dispatch(deleteFriendAC(userId));
-      }
-      debugger;
-      dispatch(toggleFollowingProgress(false, userId));
-    });
+  return async (dispatch) => {
+    const ApiMethod = userAPI.deleteFriend.bind(userAPI);
+    const actionCreator = deleteFriendAC;
+    folowUnfollowFlow({ ApiMethod, actionCreator, dispatch, userId });
   };
 };
 

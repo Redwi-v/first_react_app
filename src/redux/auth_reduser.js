@@ -1,8 +1,8 @@
-import authApi from "../API/auth";
-import profileApi from "../API/profile";
+import authApi from '../API/auth';
+import profileApi from '../API/profile';
 
-const SET_USER_DATA = "SET_USER_DATA";
-const SET_USER_PROFILE_INFO = "SET_USER_PROFILE_INFO";
+const SET_USER_DATA = 'authReduser/SET_USER_DATA';
+const SET_USER_PROFILE_INFO = 'authReduser/SET_USER_PROFILE_INFO';
 
 const initialState = {
   profile: {
@@ -37,21 +37,20 @@ export const authReduser = (state = initialState, action) => {
 };
 
 //thunks
-export const getAuthUserData = (userId) => (dispatch) => {
-  profileApi.getProfile(userId).then((res) => {
-    dispatch(setAuthUserProfileInfo(res.data));
-  });
+export const getAuthUserData = (userId) => async (dispatch) => {
+  const res = await profileApi.getProfile(userId);
+  dispatch(setAuthUserProfileInfo(res.data));
 };
 
-export const getAuthUserInfo = () => (dispatch) => {
-  return authApi.me().then((res) => {
-    let isAuth = true;
-    if (res.data.messages[0]) {
-      isAuth = false;
-    }
-    const { id, login, email } = res.data.data;
-    dispatch(setUserAuthData(id, email, login, isAuth));
-  });
+export const getAuthUserInfo = () => async (dispatch) => {
+  const res = await authApi.me();
+
+  let isAuth = true;
+  if (res.data.messages[0]) {
+    isAuth = false;
+  }
+  const { id, login, email } = res.data.data;
+  dispatch(setUserAuthData(id, email, login, isAuth));
 };
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
