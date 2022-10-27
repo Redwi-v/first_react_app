@@ -1,0 +1,38 @@
+.pagination_button {
+  color: #fff;
+  background-color: rgba(30, 143, 255, 0.733);
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+.selectedPage {
+  padding: 7px 12px;
+}
+.pagination_button {
+  cursor: pointer;
+}
+.pagination_block {
+  display: flex;
+  align-items: center;
+}
+.pagination_block ul {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.control {
+  background-color: rgba(30, 143, 255, 0.733);
+  border: none;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.control img {
+  transform: rotate(180deg);
+}
+.control:last-child img {
+  transform: rotate(0deg);
+}

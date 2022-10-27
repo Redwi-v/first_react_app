@@ -1,4 +1,5 @@
 import userAPI from '../API/user';
+import { object_change_param } from './utils/validators/object_change_param';
 
 const ADD_FRIEND = 'ADD_FRIED';
 const DELETE_FRIEND = 'DELETE_FRIED';
@@ -10,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const intitialState = {
   users: [],
-  pageSize: 5,
+  pageSize: 10,
   totalUsersCount: 40,
   selectedPage: 1,
   isFeching: false,
@@ -22,22 +23,28 @@ export const usersReduser = (state = intitialState, action) => {
     case ADD_FRIEND:
       return {
         ...state,
-        users: state.users.map((user) => {
-          if (user.id === action.userid) {
-            return { ...user, followed: true };
-          }
-          return user;
+        users: object_change_param(state, 'id', action.userid, {
+          followed: true,
         }),
+        // users: state.users.map((user) => {
+        //   if (user.id === action.userid) {
+        //     return { ...user, followed: true };
+        //   }
+        //   return user;
+        // }),
       };
     case DELETE_FRIEND:
       return {
         ...state,
-        users: state.users.map((user) => {
-          if (user.id === action.userid) {
-            return { ...user, followed: false };
-          }
-          return user;
+        users: object_change_param(state, 'id', action.userid, {
+          followed: false,
         }),
+        // users: state.users.map((user) => {
+        //   if (user.id === action.userid) {
+        //     return { ...user, followed: false };
+        //   }
+        //   return user;
+        // }),
       };
     case GET_USERS:
       return { ...state, users: [...action.newUsers] };
@@ -90,7 +97,7 @@ export const getUsersThunkCreator = (selectPage, pageSize) => {
     dispatch(getUsers(data.items));
     dispatch(toggleIsFeching(false));
 
-    // dispatch(getTotalUserCount(response.data.totalCount)); // слишком много пока
+    dispatch(getTotalUsersCount(data.totalCount));
   };
 };
 export const addFriend = (userId) => {

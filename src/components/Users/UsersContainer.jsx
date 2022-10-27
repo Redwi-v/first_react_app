@@ -1,13 +1,13 @@
-import { connect } from "react-redux";
-import Users from "./Users";
+import { connect } from 'react-redux';
+import Users from './Users';
 import {
   addFriend,
   deleteFriend,
   chageCurrentPage,
   toggleFollowingProgress,
   getUsersThunkCreator,
-} from "../../redux/users_page";
-import React from "react";
+} from '../../redux/users_page';
+import React from 'react';
 import {
   getFollowingProgress,
   getIsFeching,
@@ -15,7 +15,7 @@ import {
   getSelectedPage,
   getTotalUsersCount,
   getUsers,
-} from "../../redux/selectors/users";
+} from '../../redux/selectors/users';
 
 class UsersAPIcomponent extends React.Component {
   sendRequestToUsers = (selectPage) => {

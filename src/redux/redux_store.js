@@ -1,10 +1,10 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
-import { profileReduser } from "./profile_page";
-import { dialogsReduser } from "./dialogs_page";
-import { usersReduser } from "./users_page";
-import { authReduser } from "./auth_reduser";
-import thunkMiddleware from "redux-thunk";
-import { app } from "./app";
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import { profileReduser } from './profile_page';
+import { dialogsReduser } from './dialogs_page';
+import { usersReduser } from './users_page';
+import { authReduser } from './auth_reduser';
+import thunkMiddleware from 'redux-thunk';
+import { app } from './app';
 
 let reduses = combineReducers({
   profilePage: profileReduser,
@@ -14,5 +14,8 @@ let reduses = combineReducers({
   app: app,
 });
 
-export let store = createStore(reduses, applyMiddleware(thunkMiddleware));
-window.state = store;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(
+  reduses,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
