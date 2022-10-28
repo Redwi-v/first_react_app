@@ -1,11 +1,9 @@
+import React, { Suspense } from 'react';
+
 import './css/style.css';
 import Sidebar from './components/Sidebar/Sidebar';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import { Route, Routes } from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
 import { useEffect } from 'react';
 import { initializationApp } from './redux/app';
 import Preloader from './components/commons/Preloder/preloader';
@@ -13,6 +11,18 @@ import { connect } from 'react-redux';
 import { store } from './redux/redux_store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+
+const Login = React.lazy(() => import('./components/Login/Login'));
+const DialogsContainer = React.lazy(() =>
+  import('./components/Dialogs/DialogsContainer')
+);
+
+const ProfileContainer = React.lazy(() =>
+  import('./components/Profile/ProfileContainer')
+);
+const UsersContainer = React.lazy(() =>
+  import('./components/Users/UsersContainer')
+);
 
 function App({ initializationApp, isInializtate }) {
   useEffect(() => {
@@ -28,16 +38,27 @@ function App({ initializationApp, isInializtate }) {
         <div className="container flex">
           <Sidebar />
           <div className="content">
-            <Routes>
-              <Route path={'/profile/:userId'} element={<ProfileContainer />} />
-              <Route path={'/profile/*'} element={<ProfileContainer />} />
+            <Suspense
+              fallback={
+                <div>
+                  <Preloader />
+                </div>
+              }
+            >
+              <Routes>
+                <Route
+                  path={'/profile/:userId'}
+                  element={<ProfileContainer />}
+                />
+                <Route path={'/profile/*'} element={<ProfileContainer />} />
 
-              <Route path={'/dialogs/*'} element={<DialogsContainer />} />
+                <Route path={'/dialogs/*'} element={<DialogsContainer />} />
 
-              <Route path={'/users/*'} element={<UsersContainer />} />
+                <Route path={'/users/*'} element={<UsersContainer />} />
 
-              <Route path={'/'} element={<Login />} />
-            </Routes>
+                <Route path={'/'} element={<Login />} />
+              </Routes>
+            </Suspense>
           </div>
         </div>
       </div>
