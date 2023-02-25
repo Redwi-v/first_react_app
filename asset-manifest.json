@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/first_react_app/static/css/main.af8b0b4e.css",
-    "main.js": "/first_react_app/static/js/main.971aa86f.js",
+    "main.js": "/first_react_app/static/js/main.cd06ae68.js",
     "static/css/305.ed2399e8.chunk.css": "/first_react_app/static/css/305.ed2399e8.chunk.css",
     "static/js/305.f95a4e48.chunk.js": "/first_react_app/static/js/305.f95a4e48.chunk.js",
     "static/css/434.7d64a493.chunk.css": "/first_react_app/static/css/434.7d64a493.chunk.css",
@@ -9,7 +9,7 @@
     "static/media/preloader.gif": "/first_react_app/static/media/preloader.10bc49ce31f7b5355651.gif",
     "index.html": "/first_react_app/index.html",
     "main.af8b0b4e.css.map": "/first_react_app/static/css/main.af8b0b4e.css.map",
-    "main.971aa86f.js.map": "/first_react_app/static/js/main.971aa86f.js.map",
+    "main.cd06ae68.js.map": "/first_react_app/static/js/main.cd06ae68.js.map",
     "305.ed2399e8.chunk.css.map": "/first_react_app/static/css/305.ed2399e8.chunk.css.map",
     "305.f95a4e48.chunk.js.map": "/first_react_app/static/js/305.f95a4e48.chunk.js.map",
     "434.7d64a493.chunk.css.map": "/first_react_app/static/css/434.7d64a493.chunk.css.map",
@@ -17,6 +17,6 @@
   },
   "entrypoints": [
     "static/css/main.af8b0b4e.css",
-    "static/js/main.971aa86f.js"
+    "static/js/main.cd06ae68.js"
   ]
 }
