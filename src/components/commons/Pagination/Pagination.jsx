@@ -17,9 +17,8 @@ const Pagination = ({ clickHandler, totalItemsCount, step, selectedItem }) => {
     return (
       <li key={index}>
         <button
-          className={`${classes.pagination_button} ${
-            selectedItem === index ? classes.selectedPage : ''
-          } `}
+          className={`${classes.pagination_button} ${selectedItem === index ? classes.selectedPage : ''
+            } `}
           onClick={() => clickHandler(index)}
         >
           {index}

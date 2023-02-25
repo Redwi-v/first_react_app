@@ -11,15 +11,12 @@ import { connect } from 'react-redux';
 import { store } from './redux/redux_store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import ProfileContainer from './components/Profile/ProfileContainer'
+
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 
 const Login = React.lazy(() => import('./components/Login/Login'));
-const DialogsContainer = React.lazy(() =>
-  import('./components/Dialogs/DialogsContainer')
-);
 
-const ProfileContainer = React.lazy(() =>
-  import('./components/Profile/ProfileContainer')
-);
 const UsersContainer = React.lazy(() =>
   import('./components/Users/UsersContainer')
 );
@@ -76,7 +73,7 @@ const AppContainer = connect(mapStateToProps, { initializationApp })(App);
 
 export const MainApp = (props) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <AppContainer />
       </Provider>
