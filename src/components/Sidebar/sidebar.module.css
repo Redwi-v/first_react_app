@@ -1,6 +1,10 @@
 .sidebar {
-	flex: 20%;
-	background-color: rgba(30, 143, 255, 0.733);
-	padding: 10px;
-	color: rgb(236, 232, 232);
+    position: fixed;
+    left: 0;
+    width: 140px;
+
+    background: rgb(240, 240, 240);
+    top: 54px;
+    bottom: 0;
+    padding: 10px;
 }

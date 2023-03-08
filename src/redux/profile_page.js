@@ -1,11 +1,11 @@
 import profileApi from '../API/profile';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const UPDATE_STATUS = 'UPDATE_STATUS';
 const SET_STATUS = 'GET_STATUS';
 const DELETE_POST = 'DELETE_POST ';
+const SET_PROFILE_PHOTO = 'SET_PROFILE_PHOTO'
 
 let initialState = {
   myPosts: [
@@ -47,12 +47,23 @@ export const profileReduser = (state = initialState, action) => {
         ...state,
         myPosts: state.myPosts.filter((post) => post.id != action.postId),
       };
+    case SET_PROFILE_PHOTO:
+      return { ...state, profile: { ...state.profile, photos: action.photos } }
     default:
       return state;
   }
 };
 
 //thunks
+export const updatePhoto = (file) => async (dispatch) => {
+  const res = await profileApi.updatePhoto(file)
+  if (res.data.resultCode === 0) {
+    dispatch(setProfilePhoto(res.data.data.photos))
+  } else {
+    alert(`Error!! result code: ${res.data.resultCode}`)
+  }
+}
+
 export const getuserProfile = (userId) => async (dispatch) => {
   const res = await profileApi.getProfile(userId);
   dispatch(setUserProfile(res.data));
@@ -76,6 +87,12 @@ export const addPsotActionCreator = (postText) => ({
   type: ADD_POST,
   postText,
 });
+export const setProfilePhoto = (photos) => {
+  return {
+    type: SET_PROFILE_PHOTO,
+    photos
+  }
+}
 
 export const deletePost = (postId) => {
   return {

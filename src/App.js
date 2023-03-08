@@ -11,14 +11,14 @@ import { connect } from 'react-redux';
 import { store } from './redux/redux_store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import ProfileContainer from './components/Profile/ProfileContainer'
+import ProfileContainer from './pages/Profile/ProfileContainer'
 
-import DialogsContainer from './components/Dialogs/DialogsContainer'
+import DialogsContainer from './pages/Dialogs/DialogsContainer'
 
-const Login = React.lazy(() => import('./components/Login/Login'));
+const Login = React.lazy(() => import('./pages/Login/Login'));
 
 const UsersContainer = React.lazy(() =>
-  import('./components/Users/UsersContainer')
+  import('./pages/Users/UsersContainer')
 );
 
 function App({ initializationApp, isInializtate }) {

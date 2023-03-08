@@ -4,6 +4,7 @@ import {
   getuserProfile,
   getStatus,
   updateStatus,
+  updatePhoto
 } from "../../redux/profile_page";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -11,7 +12,7 @@ import withRedirect from "../../hoc/withRedirect";
 import { compose } from "redux";
 
 const ProfileContainer = (props) => {
-  const { AuthUserId, getuserProfile, getStatus } = props;
+  const { AuthUserId, getuserProfile, getStatus, updatePhoto } = props;
 
   let userId = useParams().userId || AuthUserId;
 
@@ -22,7 +23,7 @@ const ProfileContainer = (props) => {
     }
   }, [userId]);
 
-  return <Profile {...props} />;
+  return <Profile {...props} isOwnProfile={!useParams().userId} updatePhoto={updatePhoto} />;
 };
 
 const mapStateToProps = (state) => {
@@ -37,6 +38,7 @@ const dispatches = {
   getuserProfile,
   getStatus,
   updateStatus,
+  updatePhoto,
 };
 
 export default compose(

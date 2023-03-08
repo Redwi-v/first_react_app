@@ -1,0 +1,156 @@
+.profile__info {
+    padding-top: 10px;
+}
+
+.top_section {
+    background: #fff;
+    overflow: hidden;
+
+    border-radius: 23px;
+    box-shadow: 0 0 15px #00000013;
+    padding-bottom: 15px;
+}
+
+.profile_block {
+    background: #fff;
+    overflow: hidden;
+
+    border-radius: 23px;
+    box-shadow: 0 0 15px #00000011;
+}
+.middle_section {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    color: #3e3f5e;
+}
+
+.socialNetwork_list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.socialNetwork {
+    width: 50px;
+    height: 50px;
+}
+.socialNetwork img {
+    object-fit: cover;
+}
+
+.contacts {
+    padding: 5px 15px;
+}
+
+.lookingForAJob {
+    font-size: 18px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.lookingForAJob span {
+    color: rgb(249, 117, 117);
+    font-weight: 900;
+}
+
+.yes span {
+    color: rgb(132, 249, 117);
+}
+
+.middle_section_title {
+    margin-bottom: 5px;
+}
+
+.about_me {
+    max-width: 300px;
+    width: 100%;
+    height: 200px;
+    padding: 5px 15px;
+}
+.about_me p {
+    font-size: 16px;
+}
+.contacts {
+    width: 100%;
+}
+
+.cover_image_wrapper {
+    width: 100%;
+    height: 220px;
+}
+.cover_image_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.user_status {
+    background: #3e3f5e;
+    color: #fff;
+    max-width: 200px;
+    border-radius: 10px;
+    margin: 10px auto 0 auto;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    overflow-wrap: anywhere;
+}
+
+.small_image_wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 20px 0 0;
+    width: 160px;
+    height: 160px;
+
+    border-radius: 68% 32% 47% 53% / 35% 61% 39% 65%;
+    border: 8px solid #fff;
+
+    margin: -110px auto 0 auto;
+}
+
+.main_info {
+    color: #3e3f5e;
+}
+.user_name {
+    text-align: center;
+}
+
+.update_photo_hover {
+}
+.update_photo_hover input {
+    display: none;
+}
+.update_photo_hover img {
+    display: block;
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+.update_photo_hover img:hover {
+    opacity: 0.75;
+}
+
+.profile__info {
+}
+
+.main__info {
+    padding: 7px 0 20px 0;
+    display: flex;
+}
+
+.profile__img {
+    display: block;
+
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

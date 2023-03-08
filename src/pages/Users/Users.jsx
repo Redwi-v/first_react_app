@@ -1,7 +1,7 @@
 import classes from './users.module.css';
 import { User } from './User/User';
-import Preloader from '../commons/Preloder/preloader';
-import Pagination from '../commons/Pagination/Pagination';
+import Preloader from '../../components/commons/Preloder/preloader';
+import Pagination from '../../components/commons/Pagination/Pagination';
 
 const Users = (props) => {
   const {

@@ -1,41 +1,43 @@
-@import 'nullStyle.css';
+@import 'zeroingStyles.css';
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .flex {
-	display: flex;
+    display: flex;
 }
 body {
-	color: #222;
-	font-family: Roboto;
-	font-weight: 600;
-	font-size: 14px;
-	overflow: hidden;
+    color: #222;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 14px;
+    overflow: hidden;
+
+    background: #e4e4e4;
 }
 
 .container {
-	max-width: 950px;
-	padding: 0 15px;
-	margin: 0 auto;
-	height: 100%;
+    max-width: 950px;
+    padding: 0 15px;
+    margin: 0 auto;
+    height: 100%;
 }
 
 .app-wraper {
 }
 
 .content {
-	flex: 80%;
-	padding: 0 10px 10px 10px;
-	overflow: auto;
-	height: 90%;
+    width: 100%;
+
+    padding: 0 10px 10px 10px;
+    overflow: auto;
+    height: 90%;
 }
 
 .main {
-	margin-top: 7px;
-	height: 100vh;
+    height: 100vh;
 }
